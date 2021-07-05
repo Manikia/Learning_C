@@ -113,5 +113,52 @@ int main(void)
         printf("?");
         scanf("%d", &choice);
     }
+    printf("End of run.\n");
+
+    return 0; //successful termination
 }
+
+void insertAtBeginning(ListNodePtr *head, char val)
+{
+    ListNodePtr new_node = malloc(sizeof(node_t));
+    //we are passing the head from the method to in here,
+    //thats how we are able to identify the first node
+    new_node->data = val; //val takes the value that we want to insert
+    new_node->nextPtr = *head;//next pointer from the head is pointer to previous head
+    //thats why it says nextPtr = *head bc its the previous head
+    //in here the next pointer is assigned as the head
+    //meaning that we are setting a new head and then after
+    *head = new_node; //points to first element in the list being val since we added
+    //in here we are moving the new head node to be the new node
+    //that we added
+
+    //the two elements above are referencing this:
+    /*typedef struct node
+    {
+        char data;
+        struct node *nextPtr;
+    } node_t;
+    */
+}
+
+
+void insertAtEnd(ListNodePtr *head, char value)
+{
+    ListNodePtr current = *head;
+
+    if(current != NULL) //if its already at end of list then move forward
+    {
+        while(current->nextPtr != NULL) //while its not at the end of the list
+        {
+            current = current->nextPtr; //move the current to the next one
+        }
+        //if it hits the end then get out of the while loop and add the new node at tail
+        current->nextPtr = malloc(sizeof(node_t));
+        current->data = value;
+        current->nextPtr = *head;
+        *head = current;
+    }
+}
+
+
 
