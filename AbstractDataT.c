@@ -153,12 +153,43 @@ void insertAtEnd(ListNodePtr *head, char value)
             current = current->nextPtr; //move the current to the next one
         }
         //if it hits the end then get out of the while loop and add the new node at tail
-        current->nextPtr = malloc(sizeof(node_t));
+        current->nextPtr = malloc(sizeof(node_t)); //fixing size for nextPtr
+        //since we hit the end w the while loop, we know we are at the end so the data
+        //will assign its value with value and then the next one from the current data
+        //will be NULL 
+        current->nextPtr->data = value; //this is setting the data as value
+        current->nextPtr->nextPtr = NULL; //we are setting the node next to the last one as NULL
+        //since we hit the end of the list
+    }
+    else
+    {
+        current = malloc(sizeof(node_t));
         current->data = value;
-        current->nextPtr = *head;
-        *head = current;
+        current->nextPtr = NULL; //this time it will point as the next node as null since its at the end
+        *head = current; //since we were already at the end that means there was only a head in there
+        //so we set the head to point to the current and then move the new node to the end
     }
 }
+
+void insert(ListNodePtr *head, char value) //we are inserting in an alrterady sorted list
+{
+    //creating local variables
+    ListNodePtr newPtr; //pointer to new node
+    ListNodePtr previousPtr; //pointer to previous node
+    ListNodePtr currentPtr; //pointer to current node
+
+    newPtr = malloc(sizeof(node_t));
+
+    if(newPtr != NULL)
+    {
+        newPtr->data = value;
+        newPtr->nextPtr = NULL; //STOPPED AT 10:24
+
+        previousPtr = NULL;
+        currentPtr = *head;
+    }
+}
+
 
 
 
