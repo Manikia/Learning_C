@@ -171,7 +171,8 @@ void insertAtEnd(ListNodePtr *head, char value)
     }
 }
 
-void insert(ListNodePtr *head, char value) //we are inserting in an alrterady sorted list
+void insert(ListNodePtr *head, char value) 
+//we are inserting in an alreaady sorted list
 {
     //creating local variables
     ListNodePtr newPtr; //pointer to new node
@@ -180,13 +181,58 @@ void insert(ListNodePtr *head, char value) //we are inserting in an alrterady so
 
     newPtr = malloc(sizeof(node_t));
 
-    if(newPtr != NULL)
+    if(newPtr != NULL) 
     {
-        newPtr->data = value;
-        newPtr->nextPtr = NULL; //STOPPED AT 10:24
-
+    //checking that there is a LL w at least a node and setting it up
+        //right now we are just setting up our nodes
+        //so in this case we create our new pointer as our data
+        //(as usual) then we create our next pointer as null since
+        //there 
+        newPtr->data = value; 
+        newPtr->nextPtr = NULL;
+    //since we are inserting in a sorted list we know that the previous
+    //from the head is null so we set it as null
         previousPtr = NULL;
+        //and then we set the current as head since there is where we
+        //are beginning at
         currentPtr = *head;
+
+//while there is an actual head in our LL we can insert
+        while(currentPtr != NULL && value > currentPtr->data)
+        {
+    //while theres a head in the LL
+            //this will insert our new node
+            previousPtr = currentPtr;
+            //it will set the previous to current which is shifting it
+            //then on the bottom it will finish shifting everything since
+            //we have to take everything in consideration when shifting
+            currentPtr = currentPtr->nextPtr;
+        }
+
+        if(previousPtr == NULL)
+        {
+            //if the previous node is null we know we at the head
+            //so we are able to set the new node as the head since theres nothing
+            //present in the LL
+            newPtr->nextPtr = *head;
+            //we finish setting it as the head
+            *head = newPtr;
+        }
+        else
+        {
+        //else it means we do have something in there 
+        //so we are going to shift everything to have space for the new node
+        //our previous turns into our next node and
+        //our new node turns 
+            previousPtr->nextPtr = newPtr; //before the head
+            newPtr->nextPtr = currentPtr; //new pointer is the new one which is the head
+        }
+
+    }
+    else
+    {
+        printf("%c not inserted. No memory available.\n", value);\
+         //left off in 12:46
     }
 }
 
