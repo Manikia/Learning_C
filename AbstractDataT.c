@@ -236,6 +236,29 @@ void insert(ListNodePtr *head, char value)
     }
 }
 
+void deleteAtBeginning(ListNodePtr *head)
+{
+    ListNodePtr tempPtr = NULL;
+
+    if(head == NULL)
+    {
+        return; //checks if we have a 
+        //head and if we dont then it means we have an empty LL
+    }
+    else
+    {
+        tempPtr = *head; 
+        //head pointer we still need so we are holding onto it
+        *head = (*head)->nextPtr; 
+        //changes the head to next pointer which means it deletes it from being head
+
+        free(tempPtr); //deallocates memory
+    }
+}
+
+
+
+
 
 
 
