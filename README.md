@@ -90,11 +90,41 @@ Define Preprocessor
     Counter n, j;
 ```
 [Example Code](./awsExampleCode/typedef.c)
+- the reason why typedefs are used is for readability
+- in addition, using numbers instead of initializing a vairable is bad and called a magic number
+- Using typedefs also create the program more portable
+    - For example if we move it to another language where it needs const instead of int initializer then we use the typewdef we globally used to change that one line instead of going everywhere to change our int to const
+- We can also user define to initialize our new scope 
+Ex:
+```c
+ #define Counter int; //will have the same result as using typedef in previous statement
+```
+- When we use #symbol we automatically know that its a preprocessor because of its format and since its a preprocessor the compiler has no interaction with it
+- typedef doesnt define a new type only define name
+[Example Code](./awsExampleCode/typedef2.c)
+- use typedefs when using: array combination, structs, pointers, or functions
+- it can also be used for casting since sometimes it has a complicated name
+Ex:
+```c
+    typedef int (*ptr_to_int_fun)(void);
+    char * p;
+    ....= (ptr_to_int_fun) p;
+```
+### Variable Length Arrays
+- length and size is defined by an expression
+- We can work with arrays without a constant size
+- its still a fixed size but we can use an expression instead
+    - size_t: unsigned int type of at least 16 bits
+    - sizeof: returns size of what we are looking for
+    - size_type: int datatype large enough to represent any possible string size
 
+[Example Code](./awsExampleCode/variableLengthArrays.c)
 
+[Example Code](./awsExampleCode/variableLengthArrays2.c)
 
+[Example Code](./awsExampleCode/variableLengthArrays3.c)
 
-
+- Avoid VLA in terms of function parameters, instead use pointers
  
 ## Book Notes
  - adding '\0' after inserting a string in C shows that the string is done if the string has an array bigger than what defined
