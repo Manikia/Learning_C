@@ -125,7 +125,26 @@ Ex:
 [Example Code](./awsExampleCode/variableLengthArrays3.c)
 
 - Avoid VLA in terms of function parameters, instead use pointers
- 
+
+### Flexible Array Members
+- a flexible array is defined by specifying empty square brackets []
+```c
+    struct s{
+        int arraySize;
+        int array[]; //this is the flexible array member
+    };
+```
+[Example Code](./awsExampleCode/flexibleArray.c)
+- flexible arrays can only be defined as the last member of a struct
+- we can only contain one flexible array and it cannot be alone, it needs one or more fixed members
+- the flexible also cant be part of another struct, in addition it cant be statically initialized, it has to be allocated dynamically and the sizes cannot be fixed at compile time 
+- Dynamic memory allocation is the process of assigning the memory space during the execution time or the run time
+- It basically makes space for something we dont know how big it will be
+- 
+
+
+
+
 ## Book Notes
  - adding '\0' after inserting a string in C shows that the string is done if the string has an array bigger than what defined
  - example
