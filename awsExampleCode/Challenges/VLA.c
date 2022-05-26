@@ -4,32 +4,26 @@
 //use VLA for array size
 //allow user specify array size first and then add the arrays
 //then ask user to add each element we want to add up
-
-
-
-
-int main(int size)
+int main()
 {
-    int array[size]; //initialize array
+    int size;
     int i;
-    int j;
-    int total;
+    //int j;
+    int total = 0;
     int elements = 0;
 
 
     printf("Whats the array size you want to initialize as: \n");
     scanf("%d", &size);
-
+    //printf("size is: %d", size);
+    //printf("array size: %d", sizeof(array));
     printf("what are the elements you want to find the sum of: \n");
     for(i = 0; i < size; i++)
     {
         scanf("%d", &elements);
-        printf("position %d is %d\n", i, elements);
-    
-        total = total + array[i];
+        total = total + elements;
         
-    //printf("%d", &total);
     }
-    printf(" Sum: %d", total);
+    printf("Sum: %d", total);
     return 0;
 }
