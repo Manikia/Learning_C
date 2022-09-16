@@ -140,7 +140,46 @@ Ex:
 - the flexible also cant be part of another struct, in addition it cant be statically initialized, it has to be allocated dynamically and the sizes cannot be fixed at compile time 
 - Dynamic memory allocation is the process of assigning the memory space during the execution time or the run time
 - It basically makes space for something we dont know how big it will be
+
+### Complex Number types
+- its in the form of a+bi where a and b are real numbers but bi is an imaginery bc its w an i
+- There are different ways we can create complex numbers, these include:
+    - `Modulus`: complex number where a+bi is sqrt(a2+b2)
+    - `Equality`: the complex numbers a+bi and c+di are equal if equals c and b equals d
+    - `Addition`: the sum of the complex numbers in a+bi and c+di is (a+c)+(b+d)i
+    - `Multiplication`: the product of the complex numbers a+bi and c+di is (ac-bd)+(ad+bc)i
+    - `Division`: The result of dividing the complex number a+bi by c+di as (ac+bd)/(c2+d2)+((bc-ad)/(c2+d2))i
+    - `Conjugate`: the conjugate of a complex number of a+bi is a-bi
+- There are different data types for the imaginary types
+```c
+float _Complex
+//stores complex number with real and imaginery as type float
+double _Complex
+//stores complex with real and imaginery parts as double
+long double _Complex
+//stores complex with real and imaginery parts as long double
+float _Imaginery
+//stores Imaginery as type float
+double _Imaginery
+//stores  Imaginery as type double
+long double _Imaginery
+//stores  Imaginery as type long double
+```
+#### Declaring Complex Numbers
+```c
+    double _Complex z1; //real and imaginery are type double
+    //this is used to avoid breaking existing code
+    //to include this we do complex.h
+    //doing this we can define as:
+    double complex z1; //without underscore would work
+    //using _Imaginery will only be used to define imaginary numbers:
+    double imaginery ix = 2.4*I;
+```
+- casting an imaginery to a complex type returns a 0 as the real part and the complex as the imaginary
+- so casting a value of an imaginary to a real type other than _Bool returns 0
 - 
+
+
 
 
 
