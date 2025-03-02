@@ -177,7 +177,27 @@ long double _Imaginery
 ```
 - casting an imaginery to a complex type returns a 0 as the real part and the complex as the imaginary
 - so casting a value of an imaginary to a real type other than _Bool returns 0
-- 
+
+### Complex Numbres:
+- we import by: `#include <complex.h>`
+
+EX:
+
+        z = a+bi
+        //a is the real number
+        //b is the imaginary number
+        //i is the unit defined as i^2 = -1
+
+File: [Example Complex](./complexEx.c)
+
+- `creal(z)`: Returns the real part of a complex number z.
+- `cimag(z)`: Returns the imaginary part of a complex number z.
+- `cabs(z)`: Returns the magnitude (absolute value) of a complex number z.
+- `carg(z)`: Returns the phase (argument) of a complex number z in radians.
+- `cexp(z)`: Returns the exponential of a complex number z.
+- `clog(z)`: Returns the natural logarithm of a complex number z.
+- `cconj(z)`: Returns the complex conjugate of a complex number z.
+
 
 
 
@@ -266,4 +286,159 @@ Example
     default: { one or more C statements; }
 ```
 - File example for [SWITCH EXAMPLE](./bookSourceCode/bookSwitch.c)
-- STOPPED PAGE 146
+
+- we can use getchar() and putchar() to get the characters and add characters to what we are looking at. if we do something like below it will print each char at a time
+- the below will print each character one at a time since getchar only gets one char but since there is a loop it will print until iuts done and it knows its done bc we got the length of the msg string and it will stop until it has all numbered strings outputted
+```c
+    #include <stdio.h>
+    #include <string.h>
+    int main()
+    {
+        int i;
+        char msg[] = "C is fun";
+        for (i = 0; i < strlen(msg); i++)
+            {
+            putchar(msg[i]); //Outputs a single character
+            }
+        putchar('\n'); // One line break after the loop is done.
+        return(0);
+    }
+```
+- we can use getchar() to get the character inputting by the keyboard and store them to a string as shown below:
+
+```c
+    #include <stdio.h>
+    #include <string.h>
+    int main()
+    {
+        int i;
+        char msg[25];
+        printf("Type up to 25 characters and then press Enter...\n");
+        for (i = 0; i < 25; i++) //gets 25 char input but it can be less if it wants to
+        {
+            msg[i] = getchar(); //this is grabbing all the characters that we are inputting and putting it in msg[i] which means that it is adding it in every position until there is none available then it will go and in the if statement its going to check if it used everything if not itwill decrease the size then itll go to putchar so that it can create a new linke of it and then output the new string in the new loop to grab each char
+            if (msg[i] == '\n')
+            {
+                i--;
+                break;
+            }
+            }
+                putchar('\n'); // One line break after the loop is done.
+            for (; i >= 0; i--)
+            {
+                putchar(msg[i]);
+        }
+        putchar('\n');
+    return(0);
+    }
+```
+- getch() has no buffer like getchar() does so when u start entering stuff it takes it and sets it and if u backspace it wont work since there is no buffer, but w getchar() it works. Another difference is that with getchar() it waits until enter is done so that it knows its the end while getch() doesnt wait
+
+- isalpha() checks if the input is a letter from a-z both upper and lowercase
+- isdigit() checks if the input is a digit from 0-9
+
+- for this example below it shows how if we were to create a password we will restrict it to have at least one upper, lower, and digit in the password and we do it as shown below:
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+    int i;
+    int hasUpper, hasLower, hasDigit;
+    char user[25], password[25];
+    // Initialize all three test variables to 0 i.e. false
+    hasUpper = hasLower = hasDigit = 0;
+    printf("What is your username? ");
+    scanf(" %s", user);
+    printf("Please create a password: ");
+    scanf(" %s", password);
+    // This loop goes through each character of the password and
+    // tests
+    // whether it is a digit, upppercase letter, then lowercase
+    // letter.
+        for (i = 0; i < strlen(password) ; i++ )
+        {
+            if (isdigit(password[i]))
+            {
+                hasDigit = 1;
+                continue;
+            }
+            if (isupper(password[i]))
+            {
+                hasUpper = 1;
+                continue;
+            }
+            if (islower(password[i]))
+            {
+                hasLower = 1;
+            }
+            }
+        /* The if portion will only execute if all three variables
+        below are 1, and the variables will only equal 1 if the appropriate
+        characters were each found */
+        if ((hasDigit) && (hasUpper) && (hasLower))
+
+        {
+            printf("\n\nExcellent work, %s,\n", user);
+            printf("Your password has upper and lowercase ");
+            printf("letters and a number.");
+
+        } else
+        {
+            printf("\n\nYou should consider a new password, %s,\n", user);
+            printf("One that uses upper and lowercase letters ");
+            printf("and a number.");
+        }
+    return(0);
+}
+```
+
+- online lesson
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+void sayHi(char name[]); //declare here before we run
+
+    int main()
+    {
+       //array
+       int thing[] = {};
+        //creating a string we can do
+        char phrase[] = "testing";
+
+        //to get an input parameter we do 
+        sayHi(phrase);
+        return(0);
+    }
+
+    void sayHi(char name[])
+    {
+        printf("Hello %s", name); //this is saying that we are getting a parameter of name and we set the name when we call it in the main method thats why it has mike
+    }
+    ```
+- return method
+```c
+#include <stdio.h>
+#include <string.h>
+
+double cube(double num);
+
+double cube (double num)
+{
+    double result = num*num*num;
+    return result;
+}
+
+    int main()
+    {
+        printf("Answer: %f", cube(3.0));
+        return 0;
+    }
+```
+
+- structs we can store different datatypes in one area
+- 
